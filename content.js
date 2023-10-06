@@ -1,6 +1,5 @@
 window.addEventListener("load", main, false);
-window.addEventListener("initiateDownload", function (e)
-{
+window.addEventListener("initiateDownload", function (e) {
     download(e);
 });
 
@@ -14,11 +13,11 @@ const memberBadgeNames = [
 ]
 
 // TODO: allow downloading icons by clicking on extension icon
-// TODO: Allow disabling adding the download button to the page
+// TODO: Allow disabling adding the download button to the page (since this adds an interval)
 
 let jsInitChecktimer = null;
 
-function main(){
+function main() {
     addDownloadButtons();
     jsInitChecktimer = setInterval(addDownloadButtons, 1000);
 }
@@ -67,14 +66,14 @@ function addDownloadButtons() {
         // console.log(container);
         const btnDownload = document.createElement("button");
         btnDownload.innerText = "Download icons!";
-        btnDownload.addEventListener("click",  (e) => {
+        btnDownload.addEventListener("click", (e) => {
             downloadIcons(container, header);
         });
         container.appendChild(btnDownload);
     }
 }
 
-function downloadIcons(container, header){
+function downloadIcons(container, header) {
     const channelHandle = document.getElementById("channel-handle").innerText;
     const folderName = channelHandle + "-" + header + "-icons";
     // the leading '.' in the xpath is key, otherwise it searches the entire document.
@@ -86,13 +85,13 @@ function downloadIcons(container, header){
 
     const promises = []
 
-    for(let i = 0; i < imgs.length; i++){
+    for (let i = 0; i < imgs.length; i++) {
         const iconObj = imgs[i];
         const url = iconObj.url;
         const filename = iconObj.filename;
         // 1) get a promise of the content
         var promise = new JSZip.external.Promise(function (resolve, reject) {
-            JSZipUtils.getBinaryContent(url, function(err, data) {
+            JSZipUtils.getBinaryContent(url, function (err, data) {
                 if (err) {
                     reject(err);
                 } else {
@@ -103,21 +102,21 @@ function downloadIcons(container, header){
 
         promises.push(promise);
 
-        promise.then(function(img) {
+        promise.then(function (img) {
             // console.log(filename);
             return iconZip.file(filename, img); // 3) chain with the text content promise
         })
-        .then(function success(text) {                    // 4) display the result
-            // console.log("Successfully added file " + filename + " to the zip");
-        }, function error(e) {
-            console.log("Failed to save " + filename);
-            console.log(e);
-        });
+            .then(function success(text) {                    // 4) display the result
+                // console.log("Successfully added file " + filename + " to the zip");
+            }, function error(e) {
+                console.log("Failed to save " + filename);
+                console.log(e);
+            });
     }
 
-    Promise.all(promises).then(function(){
+    Promise.all(promises).then(function () {
         zip.generateAsync({
-            type:"blob", 
+            type: "blob",
             compression: "DEFLATE"
         }).then(function (blob) { // 1) generate the zip file
             // TODO: detect whether we're downloading membership or icons and rename accordingly
