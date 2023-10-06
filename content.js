@@ -18,7 +18,6 @@ const memberBadgeNames = [
 let jsInitChecktimer = null;
 
 function main() {
-    addDownloadButtons();
     jsInitChecktimer = setInterval(addDownloadButtons, 1000);
 }
 
