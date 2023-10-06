@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Emote Downloader",
+    "version": "0.1",
+    "content_scripts": [
+      {
+        "matches": [
+          "https://youtube.com/*",
+          "https://www.youtube.com/*"
+        ],
+        "js": [
+            "FileSaver.js",
+            "jszip.min.js", 
+            "content.js"
+          ],
+        "run_at": "document_end"
+      }
+    ],
+    "permissions": [
+      "downloads",
+      "storage",
+      "unlimitedStorage"
+    ]
+  }
