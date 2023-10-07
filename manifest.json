@@ -1,7 +1,8 @@
 {
     "manifest_version": 3,
     "name": "YouTube Emote Downloader",
-    "version": "0.1",
+    "version": "0.0.0.1",
+    "description": "An extension that helps download full-quality versions of YouTube Channel emotes and Membership Badges.",
     "content_scripts": [
       {
         "matches": [
