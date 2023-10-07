@@ -16,9 +16,9 @@
                 "https://www.youtube.com/*"
             ],
             "js": [
-                "FileSaver.min.js",
-                "jszip.min.js",
-                "jszip-utils.min.js",
+                "FileSaver.js",
+                "jszip.js",
+                "jszip-utils.js",
                 "content.js"
             ],
             "run_at": "document_end"
