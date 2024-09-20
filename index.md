@@ -7,6 +7,6 @@ The privacy policy may be viewed here: https://ytemoteextractor.entire.website/P
 
 **New!** You can now download the extension from the official browser extension stores! Links below.
 
-![Chrome Web Store](images/chrome-web-store-small.png)
-![Firefox Add-ons](images/get-the-addon-178x60px.dad84b42.png)
+[![Chrome Web Store](images/chrome-web-store-small.png)](https://chromewebstore.google.com/detail/youtube-emote-downloader/lfceamfoncfajmodgdlgnmlmddgoekfh)
+[![Firefox Add-ons](images/get-the-addon-178x60px.dad84b42.png)](https://addons.mozilla.org/en-CA/firefox/addon/youtube-emote-downloader/)
 
