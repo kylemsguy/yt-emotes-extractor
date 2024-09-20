@@ -73,7 +73,16 @@ function addDownloadButtons() {
 }
 
 function downloadIcons(container, header) {
-    const channelHandle = document.getElementById("channel-handle").innerText;
+    // TODO: Find a better, more general xpath for this. This is very fragile and could break at any time... maybe use regex?
+    const channelHandleXPath = "//*[@id=\"page-header\"]/yt-page-header-renderer/yt-page-header-view-model/div/div[1]/div/yt-content-metadata-view-model/div[1]/span";
+    const channelHandleNode = document.evaluate(channelHandleXPath, document, null, XPathResult.STRING_TYPE, null);
+    let channelHandle;
+    if (!channelHandleNode) {
+        channelHandle = "unknown_channel";
+        console.log("YouTube updated the DOM again--needs update");
+    } else {
+        channelHandle = channelHandleNode.stringValue;
+    }
     const folderName = channelHandle + "-" + header + "-icons";
     // the leading '.' in the xpath is key, otherwise it searches the entire document.
     const imgsContainer = document.evaluate(".//img", container, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
